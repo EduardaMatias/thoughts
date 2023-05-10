@@ -1,0 +1,43 @@
+<div class='home-header'>
+  {{#if search}}
+    <h1>Resultados para a busca: {{search}}</h1>
+  {{else}}
+    <h1>Todos os pensamentos!</h1>
+  {{/if}}
+  <form action='/' method='get'>
+    <input type='text' name='search' placeholder='Está buscando por algo?' />
+    <input type='submit' value='Buscar' class='btn' />
+  </form>
+  <div class='order-container'>
+    <span>Ordernar por: </span>
+    <form action='/' method='get'>
+      <input type='hidden' name='search' value='{{this.search}}' />
+      <input type='hidden' name='order' value='new' />
+      <button type='submit'><i class='bi bi-arrow-up'></i></button>
+    </form>
+    <form action='/' method='get'>
+      <input type='hidden' name='search' value='{{this.search}}' />
+      <input type='hidden' name='order' value='old' />
+      <button type='submit'><i class='bi bi-arrow-down'></i></button>
+    </form>
+    <a href='/'>Limpar</a>
+  </div>
+</div>
+<div class='thoughts-container'>
+  {{#if thoughts.length}}
+    {{#each thoughts}}
+      <figure>
+        <blockquote>"{{this.title}}"</blockquote>
+        <figcaption>por <span>{{this.User.name}}</span></figcaption>
+      </figure>
+    {{/each}}
+  {{else}}
+    <figure>
+      <blockquote class='no-result'>Nenhum resultado encontrado</blockquote>
+    </figure>
+  {{/if}}
+
+  {{#if thoughtsQty}}
+    <p class='results'>{{thoughtsQty}} resultados encontrados</p>
+  {{/if}}
+</div>
